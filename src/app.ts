@@ -51,8 +51,8 @@ function novoProduto(req: Request, res: Response): void {
         if(idExiste){
             throw new Error("Já existe um produto cadastrado com este ID.");
         }
-        if (!data.id || !data.nome || !data.preco || !data.fabricante) {
-            throw new Error("Para criar um produto novo é necessário informar o id, nome, preço e o fabricante");
+        if(!data.nome || !data.id || !data.preco || !data.fabricante || !data.cidade || !data.pais){
+           throw new Error("É necessário informar: nome, id, preço, fabricante, cidade e país.");
         }
 
         let produto = new Produto(data.id, data.nome, data.preco, data.fabricante);
