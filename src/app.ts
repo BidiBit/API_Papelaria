@@ -27,7 +27,7 @@ function filtraProdutoPorID(req: Request, res: Response): void {
 
 function listarProdutos(req: Request, res: Response): void {
     try {
-        if(!produtos){
+        if(produtos.length === 0){
             res.status(404).json({Message: "Não há nenhum produto cadastrado"});
             return;
         }
@@ -42,10 +42,17 @@ function listarProdutos(req: Request, res: Response): void {
 function novoProduto(req: Request, res: Response): void {
     try {
         let data: any = req.body;
-        
+        const idExiste: any = produtos.find(p => p.id === data.id);
+
+        if(data.preco <= 0) {
+            throw new Error("O preço do produto deve ser maior que zero.");
+        }
+
+        if(idExiste){
+            throw new Error("Já existe um produto cadastrado com este ID.");
+        }
         if (!data.id || !data.nome || !data.preco || !data.fabricante) {
-            res.status(400).json("Para criar um produto novo é necessário informar o id, nome, preço e o fabricante");
-            return;
+            throw new Error("Para criar um produto novo é necessário informar o id, nome, preço e o fabricante");
         }
 
         let produto = new Produto(data.id, data.nome, data.preco, data.fabricante);
@@ -54,7 +61,7 @@ function novoProduto(req: Request, res: Response): void {
         res.status(201).json(produto);
 
     } catch(e: unknown) {
-        res.status(400).json({ Message: "Dados inválidos enviados pelo usuário" });
+        res.status(400).json({Message: (e as Error).message });
     }
 }
 

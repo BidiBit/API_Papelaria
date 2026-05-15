@@ -1,0 +1,161 @@
+{
+  "info": {
+    "_postman_id": "c9d1a527-f3ec-4cba-9632-91e8fb7036d8",
+    "name": "API_PAPELARIA",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54299024",
+    "_collection_link": "https://go.postman.co/collection/54299024-c9d1a527-f3ec-4cba-9632-91e8fb7036d8?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "filtraProdutoPorID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/API_PAPELARIA/Produto/id",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "API_PAPELARIA",
+            "Produto",
+            "id"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "listarProdutos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/API_PAPELARIA/Produto",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "API_PAPELARIA",
+            "Produto"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "novoProduto",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "    {\r\n        \"id\": 1,\r\n        \"nome\": \"Caderno\",\r\n        \"preco\": 12.99,\r\n        \"fabricante\": {\r\n            \"nome\": \"Tilibra\",\r\n            \"endereco\": {\r\n                \"cidade\": \"São Paulo\",\r\n                \"pais\": \"Brasil\"\r\n            }\r\n        }\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/API_PAPELARIA/Produto",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "API_PAPELARIA",
+            "Produto"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "novoProduto2",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 2,\r\n    \"nome\": \"Caneta BIC Azul\",\r\n    \"preco\": 2.50,\r\n    \"fabricante\": {\r\n        \"nome\": \"Bic\",\r\n        \"endereco\": {\r\n            \"cidade\": \"Manaus\",\r\n            \"pais\": \"Brasil\"\r\n        }\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/API_PAPELARIA/Produto",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "API_PAPELARIA",
+            "Produto"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "atualizarProduto",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "    {\r\n        \"nome\": \"Cartolina\",\r\n        \"preco\": 2.00,\r\n        \"fabricante\": {\r\n            \"nome\": \"Jandaia\",\r\n            \"endereco\": {\r\n                \"cidade\": \"São Paulo(SP)\",\r\n                \"pais\": \"Brasil\"\r\n            }\r\n        }\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/API_PAPELARIA/Produto/id",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "API_PAPELARIA",
+            "Produto",
+            "id"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "deletarPorID",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/API_PAPELARIA/Produto/id",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "API_PAPELARIA",
+            "Produto",
+            "id"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

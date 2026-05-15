@@ -13,33 +13,47 @@ function filtraProdutoPorID(req, res) {
     try {
         let id = Number(req.params.id);
         const produto = produtos.find(p => p.id === id);
+        if (!produto) {
+            res.status(404).json({ Message: "Produto não encontrado" });
+            return;
+        }
         res.status(200).json(produto);
     }
     catch (e) {
-        res.status(404).json({ Message: "Produto não encontrado" });
+        res.status(400).json({ Message: "Dados inválidos enviados pelo usuário" });
     }
 }
 function listarProdutos(req, res) {
     try {
+        if (produtos.length === 0) {
+            res.status(404).json({ Message: "Não há nenhum produto cadastrado" });
+            return;
+        }
         res.status(200).json(produtos);
     }
     catch (e) {
-        res.status(404).json({ Message: "Não há nenhum produto cadastrado" });
+        res.status(500).json({ Message: "Erro interno da aplicação" });
     }
 }
 function novoProduto(req, res) {
     try {
         let data = req.body;
+        const idExiste = produtos.find(p => p.id === data.id);
+        if (data.preco <= 0) {
+            throw new Error("O preço do produto deve ser maior que zero.");
+        }
+        if (idExiste) {
+            throw new Error("Já existe um produto cadastrado com este ID.");
+        }
         if (!data.id || !data.nome || !data.preco || !data.fabricante) {
-            res.status(400).json("Para criar um produto novo é necessário informar o id, nome, preço e o fabricante");
-            return;
+            throw new Error("Para criar um produto novo é necessário informar o id, nome, preço e o fabricante");
         }
         let produto = new Produto_1.Produto(data.id, data.nome, data.preco, data.fabricante);
         produtos.push(produto);
         res.status(201).json(produto);
     }
     catch (e) {
-        res.status(400).json({ Message: "Dados inválidos enviados pelo usuário" });
+        res.status(400).json({ Message: e.message });
     }
 }
 function atualizarProduto(req, res) {
